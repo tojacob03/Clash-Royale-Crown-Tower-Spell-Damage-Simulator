@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flashcards – Spell Damage</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            accent:  '#f43f5e'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Fixiertes, geblurrtes Hintergrundbild */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url('img/bg/cr-background.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.1;
+      filter: blur(4px);
+      z-index: -1;
+    }
+  </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
+
+  <!-- Wrapper: Header + Content + Controls; Footer kommt danach -->
+  <div class="relative z-10 flex flex-col min-h-screen pb-64">
+
+    <!-- Header -->
+    <header class="flex justify-between items-center p-4 shadow-md bg-gray-50/90 dark:bg-gray-800/90">
+      <a href="index.html" class="text-primary font-medium px-3 py-1 rounded hover:underline">← Simulator</a>
+      <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+        <img id="theme-icon" src="img/toggles/light-toggle.svg" alt="Toggle theme" class="h-8 w-8" />
+      </button>
+    </header>
+
+    <!-- Flashcard Section: vertikal zentriert -->
+    <div class="flex-grow flex items-center justify-center px-4 pt-24 pb-12">
+      <div class="perspective w-full max-w-md">
+        <div id="flashcard" class="relative w-full h-64 transition-transform duration-500 transform-style-preserve-3d cursor-pointer">
+          <!-- Front -->
+          <div id="card-front" class="absolute inset-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border rounded-xl shadow-xl flex items-center justify-center text-2xl font-semibold">
+            Loading...
+          </div>
+          <!-- Back -->
+          <div id="card-back" class="absolute inset-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border rounded-xl shadow-xl flex items-center justify-center text-2xl font-semibold transform rotate-y-180">
+            Loading...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="text-center pb-8">
+      <button id="next-card" class="mt-6 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-600">
+        Next Card
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Footer (erst nach Scroll sichtbar) -->
+  <footer class="bg-gray-100 dark:bg-gray-800 border-t border-gray-300 dark:border-gray-700 p-6 text-center text-sm text-gray-600 dark:text-gray-400">
+    <div class="flex flex-col items-center space-y-2">
+      <a href="https://twitter.com/RukawaAnalyst"
+         target="_blank"
+         rel="noopener"
+         class="inline-block hover:opacity-80 transition">
+        <img src="img/icons/x.svg"
+             alt="Twitter"
+             class="h-6 w-6"/>
+      </a>
+      <p>Unofficial tool. Not affiliated with Supercell.</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="js/flashcards.js"></script>
+  <script>
+    const htmlEl = document.documentElement;
+    const iconImg = document.getElementById("theme-icon");
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      const isDark = htmlEl.classList.toggle("dark");
+      iconImg.src = isDark
+        ? "img/toggles/dark-toggle.svg"
+        : "img/toggles/light-toggle.svg";
+    });
+  </script>
+
+  <!-- Flashcard Flip Styles -->
+  <style>
+    .perspective {
+      perspective: 1000px;
+    }
+    #flashcard {
+      transform-style: preserve-3d;
+    }
+    #flashcard.rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    #flashcard > div {
+      backface-visibility: hidden;
+    }
+    #card-back {
+      transform: rotateY(180deg);
+    }
+  </style>
+</body>
+</html>

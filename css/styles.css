@@ -1,0 +1,126 @@
+:root {
+  /* Light Theme */
+  --color-bg:            hsl(210,20%,98%);
+  --color-bg-contrast:   #fff;
+  --color-primary:       hsl(220,90%,56%);
+  --color-text:          hsl(210,10%,15%);
+  --color-shadow:        rgba(0,0,0,0.1);
+}
+[data-theme="dark"] {
+  /* Dark Theme */
+  --color-bg:            hsl(210,10%,10%);
+  --color-bg-contrast:   hsl(210,10%,15%);
+  --color-primary:       hsl(220,90%,66%);
+  --color-text:          hsl(210,20%,90%);
+  --color-shadow:        rgba(0,0,0,0.5);
+}
+
+:root {
+  --font-sans:           'Inter', sans-serif;
+  --fs-base:             1rem;
+  --fs-lg:               1.25rem;
+
+  --space-1:             0.5rem;
+  --space-2:             1rem;
+  --space-3:             1.5rem;
+  --radius:              0.75rem;
+}
+
+/* Reset & Basics */
+* {
+  box-sizing: border-box;
+  margin:      0;
+  padding:     0;
+}
+html {
+  font-family: var(--font-sans);
+  background:  var(--color-bg);
+  color:       var(--color-text);
+  font-size:   var(--fs-base);
+}
+body {
+  line-height: 1.6;
+}
+
+/* Header */
+.header {
+  display:        flex;
+  align-items:    center;
+  justify-content: space-between;
+  background:     var(--color-bg-contrast);
+  padding:        var(--space-2);
+  box-shadow:     0 2px 4px var(--color-shadow);
+  margin-bottom:  var(--space-3);
+}
+.header h1 {
+  font-size: 1.5rem;
+}
+.header .small {
+  font-size: 0.875rem;
+}
+
+/* Utilities */
+.mt-3 { margin-top: var(--space-3); }
+.p-3  { padding:    var(--space-3); }
+
+/* Inputs & Buttons */
+.form-control,
+.form-select {
+  width:         100%;
+  padding:       var(--space-1);
+  border-radius: var(--radius);
+  border:        1px solid #ccc;
+  background:    var(--color-bg-contrast);
+  color:         var(--color-text);
+  margin-bottom: var(--space-2);
+}
+.btn-primary {
+  background:    var(--color-primary);
+  color:         #fff;
+  border:        none;
+  padding:       var(--space-1) var(--space-2);
+  border-radius: var(--radius);
+  cursor:        pointer;
+  transition:    background 0.2s;
+}
+.btn-primary:hover {
+  background: hsl(220,90%,46%);
+}
+
+/* Spell-Wrapper & Icons */
+.spell-wrapper {
+  display:       inline-flex;
+  align-items:   center;
+  margin-right:  var(--space-2);
+  margin-bottom: var(--space-2);
+}
+.spell-icon {
+  width:         2rem;
+  height:        2rem;
+  object-fit:    contain;
+  margin-right:  0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  main {
+    padding: var(--space-2);
+  }
+  .spell-wrapper {
+    flex-direction: column;
+    align-items:    flex-start;
+  }
+  .spell-wrapper .spell-icon {
+    margin-bottom: var(--space-1);
+  }
+  .form-control,
+  .form-select,
+  .btn-primary {
+    width: 100%;
+  }
+}
+@media (max-width: 400px) {
+  html {
+    font-size: 0.875rem;
+  }
+}

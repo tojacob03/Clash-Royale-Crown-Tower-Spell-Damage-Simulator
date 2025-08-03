@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crown Tower Spell Damage Simulator</title>
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            accent:  '#f43f5e'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Fixiertes, geblurrtes Hintergrundbild */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url('img/bg/cr-background.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.1;
+      filter: blur(4px);
+      z-index: -1;
+    }
+  </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
+
+  <!-- Wrapper: Header + Content; Footer durch pb-64 erst nach Scroll -->
+  <div class="relative z-10 flex flex-col min-h-screen pb-64">
+
+    <!-- Header -->
+    <header class="flex justify-between items-center p-4 shadow-md bg-gray-50/90 dark:bg-gray-800/90">
+      <h1 class="text-2xl font-bold">Crown Tower Spell Damage Simulator</h1>
+      <div class="flex items-center space-x-3">
+        <a href="flashcards.html" class="px-3 py-1 rounded-md text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition">
+          Flashcards 11
+        </a>
+        <a href="flashcards-15.html" class="px-3 py-1 rounded-md text-sm font-medium bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition">
+          Flashcards 15
+        </a>
+        <button id="theme-toggle" class="relative p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 w-10 h-10">
+          <img
+            id="icon-light"
+            src="img/toggles/light-toggle.svg"
+            class="absolute inset-0 h-8 w-auto transition-opacity duration-300 opacity-100 dark:opacity-0"
+            alt="Light Icon"
+          />
+          <img
+            id="icon-dark"
+            src="img/toggles/dark-toggle.svg"
+            class="absolute inset-0 h-8 w-8 transition-opacity duration-300 opacity-0 dark:opacity-100"
+            alt="Dark Icon"
+          />
+        </button>
+      </div>
+    </header>
+
+    <!-- Content-Bereich: vertikal zentriert, tiefer im Viewport -->
+    <div class="flex-grow flex items-center justify-center px-4 pt-24 pb-12">
+      <main class="w-full max-w-2xl mx-auto px-6 space-y-6 bg-white dark:bg-gray-800 backdrop-blur-lg rounded-xl shadow-2xl py-8">
+
+        <!-- Level Toggle -->
+        <div class="flex justify-center">
+          <img
+            id="level-toggle"
+            src="img/segmented/segmented-light-11.svg"
+            alt="Level Toggle"
+            class="w-68 cursor-pointer transition duration-300"
+          />
+        </div>
+
+        <!-- Input + Buttons -->
+        <div class="flex flex-col space-y-2">
+          <input
+            id="deck-link"
+            type="text"
+            placeholder="Deck-Link (optional)"
+            class="px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+          <button id="import-deck" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-600">
+            Import Deck
+          </button>
+          <button id="reset-deck" class="px-4 py-2 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600">
+            Reset Spells
+          </button>
+        </div>
+
+        <!-- Spell Selectors -->
+        <div id="spell-selectors" class="grid grid-cols-1 gap-4 w-full px-2">
+          <!-- JS injected -->
+        </div>
+
+        <!-- Calculate Button -->
+        <button id="calculate" class="w-full px-4 py-3 bg-accent text-white rounded-lg hover:bg-red-600">
+          Calculate Total Damage
+        </button>
+
+        <!-- Result -->
+        <div id="result" class="hidden text-center text-3xl font-semibold pt-2"></div>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- Footer: erst nach Scroll sichtbar -->
+  <footer class="bg-gray-100 dark:bg-gray-800 border-t border-gray-300 dark:border-gray-700 p-6 text-center text-sm text-gray-600 dark:text-gray-400">
+    <div class="flex flex-col items-center space-y-2">
+      <a href="https://twitter.com/RukawaAnalyst"
+         target="_blank"
+         rel="noopener"
+         class="inline-block hover:opacity-80 transition">
+        <img src="img/icons/x.svg"
+             alt="Twitter"
+             class="h-6 w-6"/>
+      </a>
+      <p>Unofficial tool. Not affiliated with Supercell.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.documentElement.classList.toggle("dark");
+    });
+  </script>
+</body>
+</html>
