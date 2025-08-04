@@ -9,7 +9,7 @@ const flashcards = [
   { spell: "Goblin Curse", damage: 54 },
   { spell: "Lightning", damage: 462 },
   { spell: "Poison", damage: 264 },
-  { spell: "Rage", damage: 65 },
+  { spell: "Rage", damage: 78 },
   { spell: "Log", damage: 58 },
   { spell: "Tornado", damage: 38 },
   { spell: "Void (1 Target)", damage: 70 },
